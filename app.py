@@ -1,10 +1,6 @@
-import os.path
-
 from flask import Flask, request, render_template, send_file
 from pytube import YouTube
 import logging
-import sys
-from moviepy.editor import *
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
