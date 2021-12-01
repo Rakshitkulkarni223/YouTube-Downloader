@@ -13,16 +13,21 @@
 
 <style>
 	input[type=text], select, textarea
-      {
-          width: 50%;
-          padding: 12px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          resize: vertical;
-      }
+	{
+	    width: 50%;
+	    padding: 12px;
+	    border: 2px solid red;
+	    border-radius: 4px;
+	    resize: vertical;
+	}
+	input[type=text]:focus 
+	{
+	    border: 2px solid #555;
+	}
 </style>
+
 <body onload=display_ct();>
-	
+
 <div class="horizontal_navigation">
 	<ul>
 		<li class="hr"><a href="{{ url_for('Download_MP4') }}">MP4 Download</a></li>
@@ -46,22 +51,21 @@
 
 	<div class="form" style="text-align: center;">
               <form action="/download_video" method="post">
-                      <input type="text" name="URL" placeholder="Paste link here...">
+                      <input type="text" name="URL" placeholder="Paste YouTube link here...">
                       <br><br><br><br>
                       <button class="button" style="vertical-align:middle"><span>Download MP4</span></button><br><br><br>
               </form>
-          </div>
-      </div>
+  </div>
 </div>
 
 <footer class="footer">
 	<h4>Follow Me:</h4><br>
 		<a href="https://www.facebook.com/rakshit.kulkarni.16" class="fa fa-facebook" target="_blank"></a>
     <a href="https://twitter.com/RakshitKulkarn2" class="fa fa-twitter"target="_blank"></a>
-    <a href="https://github.com/Rakshitkulkarni223" class="fa fa-github" target="_blank"></a>
+    <a href="https://github.com/Rakshitkulkarni223" class="fa fa-github" target="_blank" style="background-color: #E8EBE4"></a>
     <a href="https://www.linkedin.com/in/rakshit-kulkarni-1b7a801a0/" class="fa fa-linkedin" target="_blank"></a>
     <a href="https://www.youtube.com/channel/UCw1J2Xsli8CKoffHsATRvow" class="fa fa-youtube" target="_blank"></a>
-    <a href="https://www.instagram.com/rakshit__kulkarni/" class="fa fa-instagram" target="_blank"></a><br><br>
+    <a href="https://www.instagram.com/rakshit__kulkarni/" class="fa fa-instagram" target="_blank" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)"></a><br><br>
     <span id='ct'></span>
     <script type="text/javascript">
         function display_c()

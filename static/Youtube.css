@@ -5,33 +5,33 @@
 }
 .h2
 {
-	font-size: 30px;
-	font-family: "Segoe UI",Arial,sans-serif;
-	font-weight: 400;
-	margin: 10px 0;
+    font-size: 30px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    margin: 10px 0;
 }
 ul
 {
-	list-style-type: none;
-	overflow: hidden;
-	background-color: black;
+    list-style-type: none;
+    overflow: hidden;
+    background-color: black;
 }
 li.hr
 {
-	float: left;
+    float: left;
 }
 
 li.hr a
 {
-	display: block;
-	color: white;
-	font-family: Verdana,sans-serif;
+    display: block;
+    color: white;
+    font-family: Verdana,sans-serif;
     font-size: 15px;
     display: block;
     line-height: 2;
     padding: 8px 16px;
     white-space: normal;
-	text-decoration: none;
+    text-decoration: none;
 }
 html, body
 {
@@ -40,63 +40,24 @@ html, body
 }
 li.hr a:hover
 {
-	background-color: #F662B9;
+    background-color: #F662B9;
 }
 .horizontal_navigation
 {
-	top: 0;
-	position: fixed;
+    top: 0;
+    position: fixed;
     width: 100%;
     z-index: 1;
 }
 
-/*Our Team*/
-.our_Team
-{
-	padding-top: 64px;
-    padding-bottom: 64px;
-}
-
-*
-{
-	box-sizing: border-box;
-}
-.details
-{
-	float: left;
-	width: 25%;
-	padding: 5px;
-}
-.Team_Members::after
-{
-    content: "";
-    clear: both;
-    display: table;
-}
-@media screen and (max-width: 601px)
-{
-    .details
-    {
-        width: 100%;
-    }
-}
-
-/* work */
-.work
-{
-	padding-top: 64px;
-    padding-bottom: 64px;
-    color: #fff;
-}
-
-/*chatbot*/
 .chatbot
 {
-	padding-top: 64px;
+    padding-top: 64px;
     padding-bottom: 64px;
     text-align: center;
 }
-/* button*/
+
+/*Button*/
 .button
 {
     display: inline-block;
@@ -141,6 +102,8 @@ li.hr a:hover
     opacity: 1;
     right: 0;
 }
+
+
 /*footer*/
 .footer
 {
@@ -178,9 +141,9 @@ li.hr a:hover
     color: white;
 }
 
-.fa-google
+.fa-github
 {
-    background: #dd4b39;
+    background: #FAF6F5;
     color: white;
 }
 

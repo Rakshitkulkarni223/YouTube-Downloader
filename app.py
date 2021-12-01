@@ -8,30 +8,34 @@ import sys
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
 
+
 @app.route("/")
 def home():
     return render_template('MP4.html')
+
 
 @app.route("/Download_MP4")
 def Download_MP4():
     return render_template('MP4.html')
 
+
 @app.route("/Download_MP3")
 def Download_MP3():
     return render_template('MP3.html')
+
 
 @app.route('/download_video', methods=['GET', 'POST'])
 def download_video():
     try:
         input_url = request.form['URL']
         # print(YouTube(input_url).streams.all())
-        video=YouTube(str(input_url)).streams.filter(resolution="720p",file_extension='mp4').first()
+        video = YouTube(str(input_url)).streams.filter(resolution="720p", file_extension='mp4').first()
 
         # for stream in YouTube(input_url).streams:
         #     print(stream["res"])
         # video.resolution="720p"
         # print("video: ",video)
-        path=video.download()
+        path = video.download()
         # print("path :",path)
         fname = path.split('//')[-1]
         # print(fname)
@@ -39,6 +43,7 @@ def download_video():
     except:
         logging.exception('Failed download')
         return 'Video download failed!'
+
 
 @app.route('/download_audio', methods=['GET', 'POST'])
 def download_audio():
@@ -50,7 +55,7 @@ def download_audio():
         songName = audio_file.title
         audio.download()
         os.rename(songName + ".mp4", songName + ".mp3")
-        return send_file(songName+".mp3", as_attachment=True)
+        return send_file(songName + ".mp3", as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Audio download failed!'
