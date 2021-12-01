@@ -45,8 +45,19 @@ def download_audio():
 
         audio=YouTube(input_url)
 
-        file=audio.streams.filter(only_audio=True).first().download()
+        audioStream = audio.streams.filter(type="audio")
 
+        file=audioStream.first().download()
+
+        # audio=YouTube(input_url)
+        #
+        # file=audio.streams.filter(only_audio=True).first()
+        # file=file.download()
+        # print(file.title())
+        #
+        # base, ext = os.path.splitext(file)
+        # new_file = base + '.mp3'
+        # os.rename(file, new_file)
         return send_file(file, as_attachment=True)
     except:
         logging.exception('Failed download')
