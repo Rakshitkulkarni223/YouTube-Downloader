@@ -4,6 +4,7 @@ from flask import Flask, request, render_template, send_file
 from pytube import YouTube
 import logging
 import sys
+from moviepy.editor import *
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
@@ -28,17 +29,9 @@ def Download_MP3():
 def download_video():
     try:
         input_url = request.form['URL']
-        # print(YouTube(input_url).streams.all())
         video = YouTube(str(input_url)).streams.filter(resolution="720p", file_extension='mp4').first()
-
-        # for stream in YouTube(input_url).streams:
-        #     print(stream["res"])
-        # video.resolution="720p"
-        # print("video: ",video)
         path = video.download()
-        # print("path :",path)
         fname = path.split('//')[-1]
-        # print(fname)
         return send_file(fname, as_attachment=True)
     except:
         logging.exception('Failed download')
@@ -50,12 +43,11 @@ def download_audio():
     try:
         input_url = request.form['URL']
 
-        audio_file = YouTube(input_url)
-        audio = audio_file.streams.get_by_itag("140")  # stream itag 140 is for mp4 audio
-        songName = audio_file.title
-        audio.download()
-        os.rename(songName + ".mp4", songName + ".mp3")
-        return send_file(songName + ".mp3", as_attachment=True)
+        audio=YouTube(input_url)
+
+        file=audio.streams.filter(only_audio=True).first().download()
+
+        return send_file(file, as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Audio download failed!'
