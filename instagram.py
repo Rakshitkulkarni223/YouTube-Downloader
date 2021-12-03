@@ -39,7 +39,6 @@ def Download_reel(url,username,password):
     global login_response, json_data
 
     if len(json_data)==0:
-        print("Ok")
         res=authontication(username,password)
         login_response=res[0]
         json_data=res[1]
@@ -49,10 +48,7 @@ def Download_reel(url,username,password):
             cookies = login_response.cookies
             cookie_jar = cookies.get_dict()
             csrf_token = cookie_jar['csrftoken']
-            print("csrf_token: ", csrf_token)
             session_id = cookie_jar['sessionid']
-            print("session_id: ", session_id)
-            print("login successful")
 
             # Header with session id
             headers = {
