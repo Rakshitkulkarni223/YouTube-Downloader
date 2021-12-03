@@ -6,6 +6,15 @@ name = "pypi"
 [packages]
 flask = "*"
 gunicorn = "*"
+jinja2 = "*"
+click = "*"
+itsdangerous = "*"
+markupsafe = "*"
+werkzeug = "*"
+pytube = "*"
+requests = "*"
+insta-scrape = "*"
+instascraper = "*"
 
 [dev-packages]
 
