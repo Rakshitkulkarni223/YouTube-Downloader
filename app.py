@@ -117,7 +117,7 @@ def download_insta_reel():
         return send_file(f"{filename[1]}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
-        return 'Instagram Reel download failed!'
+        return filename[1]
 
 
 if __name__ == '__main__':
