@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 	<title>YouTube MP4 Download</title>
 	<meta charset="utf-8">
@@ -24,12 +24,65 @@
 	{
 	    border: 2px solid #555;
 	}
+
+	.container 
+	{
+		  margin-bottom: 10px;
+	}
+	.container label 
+	{
+		  position: relative;
+	}
+	.container span::before,
+	.container span::after 
+	{
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  margin: auto;
+	}
+
+	/* Radio buttons */
+	.container span.radio:hover 
+	{
+	  cursor: pointer;
+	}
+	.container span.radio::before 
+	{
+		  left: -52px;
+		  width: 45px;
+		  height: 25px;
+		  background-color: #555555;
+		  border-radius: 50px;
+	}
+	.container span.radio::after 
+	{
+		  left: -49px;
+		  width: 17px;
+		  height: 17px;
+		  border-radius: 10px;
+		  background-color: #F83A18;
+		  transition: left .25s, background-color .25s;
+	}
+	input[type=radio] 
+	{
+	    margin: 4px 2px 0;
+	}
+	input[type="radio"]:checked + label span.radio::after 
+	{
+		  left: -27px;
+		  background-color: #4EFC53;
+	}
+	
 </style>
 
 <body onload=display_ct();>
 
 <div class="horizontal_navigation">
 	<ul>
+		<li class="hr"><a href="{{ url_for('home') }}">Home</a></li>
+		<li class="hr"><a href="{{ url_for('Download_reel') }}">Instagram</a></li>
 		<li class="hr"><a href="{{ url_for('Download_MP4') }}">MP4 Download</a></li>
 		<li class="hr"><a href="{{ url_for('Download_MP3') }}">MP3 Download</a></li>
 	</ul>
@@ -62,8 +115,22 @@
 	<div class="form" style="text-align: center;">
               <form action="/download_video" method="post">
                       <input type="text" name="URL" placeholder="Paste YouTube link here...">
-                      <br><br><br><br>
-                      <button class="button" style="vertical-align:middle"><span>Download MP4</span></button><br><br><br>
+                      <br><br>
+					  {% for resol in resolutions[0:1] %}
+				             <div class="container">
+                                   <input type="radio" id="{{resol}}" name="resolution" value="{{resol}}" checked>
+								   <label for="{{resol}}"><span class="radio">{{resol}}</span></label>
+							 </div>
+                       {% endfor %}
+					   {% for resolution in resolutions[1:] %}
+				             <div class="container">
+                                   <input type="radio" id="{{resolution}}" name="resolution" value="{{resolution}}">
+								   <label for="{{resolution}}"><span class="radio">{{resolution}} {{filesize}}</span></label>
+							 </div>
+                       {% endfor %}
+
+
+				  <button class="button" style="vertical-align:middle"><span>Download MP4</span></button><br><br><br>
               </form>
   </div>
 </div>
