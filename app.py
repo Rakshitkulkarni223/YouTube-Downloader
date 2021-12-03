@@ -1,16 +1,18 @@
 from flask import Flask, request, render_template, send_file
 from pytube import YouTube
-import logging,sys
+import logging, sys
 import instagram
 
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
 
-resolutions=['Auto','144p','240p','360p','480p','720p','1080p','1440p','2040p']
+resolutions = ['Auto', '144p', '240p', '360p', '480p', '720p', '1080p', '1440p', '2040p']
+
 
 @app.route("/")
 def home():
     return render_template('Home.html')
+
 
 # YouTube
 
@@ -36,35 +38,34 @@ def download_video():
         for stream in YouTube(input_url).streams.filter(progressive=True).order_by('resolution'):
             resolu.add(stream.resolution)
 
-        resolu=sorted(list(resolu))
+        resolu = sorted(list(resolu))
 
-        res=request.form['resolution']
+        res = request.form['resolution']
 
-        flag=False
+        flag = False
 
         for resolution in resolu:
-            if res==resolution:
-                flag=True
-                video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolution, file_extension='mp4').first()
+            if res == resolution:
+                flag = True
+                video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolution,
+                                                               file_extension='mp4').first()
                 break
 
         if not flag:
-            video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolu[len(resolu)-1],
+            video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolu[len(resolu) - 1],
                                                            file_extension='mp4').first()
-
 
         name = video.title
 
         if '|' in name:
-            name=name.split('|')[0]
+            name = name.split('|')[0]
 
         video.download(filename=name + '.mp4')
 
-        return send_file(f"{name}.mp4",as_attachment=True)
+        return send_file(f"{name}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Video download failed!'
-
 
 
 @app.route('/download_audio', methods=['GET', 'POST'])
@@ -77,12 +78,12 @@ def download_audio():
         name = audio_file.streams.get_audio_only().title
 
         if '|' in name:
-            name=name.split('|')[0]
+            name = name.split('|')[0]
 
         audio_file.streams.get_audio_only().download(filename=name + '.mp3')
 
-        return send_file(f"{name}.mp3",as_attachment=True)
-    
+        return send_file(f"{name}.mp3", as_attachment=True)
+
     except:
         logging.exception('Failed download')
         return 'Audio download failed!'
@@ -99,15 +100,16 @@ def Download_reel():
 def Download_post():
     return render_template('Instagram_post.html')
 
+
 @app.route("/download_insta_reel", methods=['GET', 'POST'])
 def download_insta_reel():
     try:
         input_url = request.form['URL']
         username = "rakshit__kulkarni"
         password = "196219992002@rdks"
-        filename=instagram.Download_reel(input_url,username,password)
+        filename = instagram.Download_reel(input_url, username, password)
 
-        if filename=="None":
+        if filename == "None":
             logging.exception('Failed download')
             return 'Instagram Reel download failed!'
 
