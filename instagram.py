@@ -30,7 +30,7 @@ def authontication(username, password):
     }
 
     login_header = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
         "X-Requested-With": "XMLHttpRequest",
         "Referer": "https://www.instagram.com/accounts/login/",
         "x-csrftoken": csrf
