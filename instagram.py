@@ -77,6 +77,6 @@ def Download_reel(url, username, password):
             # download function
             insta_reel.download(f"{video_name}.mp4")
 
-            return video_name
+            return "Ok",video_name
     except Exception as e:
-        return "None"
+        return "None",e

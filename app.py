@@ -109,11 +109,12 @@ def download_insta_reel():
         password = "196219992002@rdks"
         filename = instagram.Download_reel(input_url, username, password)
 
-        if filename == "None":
+        if filename[0] == "None":
             logging.exception('Failed download')
-            return 'Instagram Reel download failed!'
+            return filename[1]
+            # return 'Instagram Reel download failed!'
 
-        return send_file(f"{filename}.mp4", as_attachment=True)
+        return send_file(f"{filename[1]}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Instagram Reel download failed!'
