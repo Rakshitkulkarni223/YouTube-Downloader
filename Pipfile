@@ -4,17 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
+Flask = "*"
 gunicorn = "*"
-jinja2 = "*"
+Jinja2 = "*"
 click = "*"
 itsdangerous = "*"
-markupsafe = "*"
-werkzeug = "*"
+MarkupSafe = "*"
+Werkzeug = "*"
 pytube = "*"
 requests = "*"
 insta-scrape = "*"
-helpers = "*"
 
 [dev-packages]
 
