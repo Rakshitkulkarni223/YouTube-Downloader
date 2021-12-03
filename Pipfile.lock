@@ -93,21 +93,6 @@
             "index": "pypi",
             "version": "==2.1.2"
         },
-        "instascrape": {
-            "hashes": [
-                "sha256:398be92c3d11a23446bc8534b5c7e7e2f7ddee1c236fe06ce1643ae929dffade"
-            ],
-            "index": "pypi",
-            "version": "==0.1"
-        },
-        "instascraper": {
-            "hashes": [
-                "sha256:21f359258a91b657c843c64ffd90091db24db3acaa11e573a29613b079e28b36",
-                "sha256:910978084fe2adbc07433e461cc9eba60aae57ff648bca9de343617970677754"
-            ],
-            "index": "pypi",
-            "version": "==2.0.4"
-        },
         "itsdangerous": {
             "hashes": [
                 "sha256:5174094b9637652bdb841a3029700391451bd092ba3db90600dea710ba28e97c",
