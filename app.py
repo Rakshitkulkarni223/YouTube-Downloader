@@ -55,18 +55,12 @@ def download_video():
 
         name = video.title
 
-        # filesize=video.filesize
-
-        # print(filesize)
-        #
-        # check()
-
         if '|' in name:
             name=name.split('|')[0]
 
-        video.download(output_path='download', filename=name + '.mp4')
+        video.download(filename=name + '.mp4')
 
-        return send_file(f"download/{name}.mp4",as_attachment=True)
+        return send_file(f"{name}.mp4",as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Video download failed!'
@@ -85,9 +79,9 @@ def download_audio():
         if '|' in name:
             name=name.split('|')[0]
 
-        audio_file.streams.get_audio_only().download(output_path='download', filename=name + '.mp3')
+        audio_file.streams.get_audio_only().download(filename=name + '.mp3')
 
-        return send_file(f"download/{name}.mp3",as_attachment=True)
+        return send_file(f"{name}.mp3",as_attachment=True)
     
     except:
         logging.exception('Failed download')
@@ -117,7 +111,7 @@ def download_insta_reel():
             logging.exception('Failed download')
             return 'Instagram Reel download failed!'
 
-        return send_file(f"download\\{filename}.mp4", as_attachment=True)
+        return send_file(f"{filename}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Instagram Reel download failed!'

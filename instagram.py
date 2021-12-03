@@ -68,7 +68,7 @@ def Download_reel(url,username,password):
 
             # Giving path where we want to download reel to the
             # download function
-            insta_reel.download(fp=f"download\\{video_name}.mp4")
+            insta_reel.download(fp=f"{video_name}.mp4")
 
             return video_name
     except:
