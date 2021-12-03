@@ -1,12 +1,18 @@
 import json
 from datetime import datetime
 import requests
+import uuid
 from instascrape import Reel
+
 
 login_response={}
 json_data={}
 
-def authontication(username,password):
+def genrate_random_file_name():
+    return str(uuid.uuid4())
+
+
+def authontication(username, password):
     global login_response, json_data
 
     link = 'https://www.instagram.com/accounts/login/'
@@ -33,22 +39,23 @@ def authontication(username,password):
     login_response = requests.post(login_url, data=payload, headers=login_header)
     json_data = json.loads(login_response.text)
 
-    return login_response,json_data
+    return login_response, json_data
 
-def Download_reel(url,username,password):
+
+def Download_reel(url, username, password):
     global login_response, json_data
 
     if len(json_data)==0:
-        res=authontication(username,password)
-        login_response=res[0]
-        json_data=res[1]
+        res = authontication(username, password)
+        login_response = res[0]
+        json_data = res[1]
 
     try:
         if json_data.get("authenticated") != None:
             cookies = login_response.cookies
             cookie_jar = cookies.get_dict()
-            csrf_token = cookie_jar['csrftoken']
             session_id = cookie_jar['sessionid']
+
 
             # Header with session id
             headers = {
@@ -64,12 +71,12 @@ def Download_reel(url,username,password):
             # Using scrape function and passing the headers
             insta_reel.scrape(headers=headers)
 
-            video_name = (url.split('/'))[4]
+            video_name = genrate_random_file_name()
 
             # Giving path where we want to download reel to the
             # download function
-            insta_reel.download(fp=f"{video_name}.mp4")
+            insta_reel.download(f"{video_name}.mp4")
 
             return video_name
-    except:
+    except Exception as e:
         return "None"
