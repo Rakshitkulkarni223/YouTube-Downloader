@@ -16,6 +16,7 @@ requests = "*"
 insta-scrape = "*"
 instascraper = "*"
 instascrape = "*"
+helpers = "*"
 
 [dev-packages]
 
