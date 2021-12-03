@@ -15,6 +15,7 @@ pytube = "*"
 requests = "*"
 insta-scrape = "*"
 instascraper = "*"
+instascrape = "*"
 
 [dev-packages]
 

@@ -9,3 +9,4 @@ pytube==11.0.1
 requests==2.26.0
 insta-scrape==2.1.2
 instascraper==2.0.4
+instascrape==0.1
