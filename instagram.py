@@ -4,7 +4,6 @@ import requests
 import uuid
 from instascrape import Reel
 
-
 login_response={}
 json_data={}
 
@@ -30,7 +29,9 @@ def authontication(username, password):
     }
 
     login_header = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
+            	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
+            	Safari/537.36 Edg/79.0.309.43",
         "X-Requested-With": "XMLHttpRequest",
         "Referer": "https://www.instagram.com/accounts/login/",
         "x-csrftoken": csrf
@@ -42,13 +43,7 @@ def authontication(username, password):
     return login_response, json_data
 
 
-def Download_reel(url, username, password):
-    global login_response, json_data
-
-    if len(json_data)==0:
-        res = authontication(username, password)
-        login_response = res[0]
-        json_data = res[1]
+def Download_reel(url, login_response, json_data):
 
     try:
         if json_data.get("authenticated") != None:
@@ -60,8 +55,8 @@ def Download_reel(url, username, password):
             # Header with session id
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
-                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
-                Safari/537.36 Edg/79.0.309.43",
+            	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
+            	Safari/537.36 Edg/79.0.309.43",
                 "cookie": f'sessionid={session_id};'
             }
 
@@ -77,6 +72,6 @@ def Download_reel(url, username, password):
             # download function
             insta_reel.download(f"{video_name}.mp4")
 
-            return "Ok",video_name
+            return video_name
     except Exception as e:
-        return "None",e
+        return "None"

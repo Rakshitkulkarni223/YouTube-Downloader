@@ -90,36 +90,71 @@ def download_audio():
 
 
 # Instagram
+res=[]
 
 @app.route("/Download_reel")
 def Download_reel():
-    return render_template('Instagram_reel.html')
+    try:
+        if res[1].get("authenticated"):
+            return render_template("Instagram_reel.html")
+        else:
+            return render_template('Instagram_login.html', login_info="Login Failed!!")
+    except:
+        return render_template('Instagram_login.html',login_info="Login Failed!!")
+
+@app.route("/Download_reel_First",methods=['GET', 'POST'])
+def Download_reel_First():
+    global res
+    try:
+        username = request.form['username']
+        password = request.form['password']
+        res=instagram.authontication(username,password)
+        if res[1].get("authenticated"):
+            return render_template("Instagram_reel.html")
+        else:
+            return render_template('Instagram_login.html', login_info="Login Failed!!")
+    except:
+        return render_template('Instagram_login.html',login_info="Login Failed!!")
+
+@app.route("/authorization")
+def authorization():
+    try:
+        if res[1].get("authenticated"):
+            return render_template("Instagram_reel.html")
+        else:
+            return render_template('Instagram_login.html', login_info="Login Failed!!")
+    except:
+        return render_template('Instagram_login.html')
 
 
 @app.route("/Download_post")
 def Download_post():
-    return render_template('Instagram_post.html')
+    try:
+        if res[1].get("authenticated"):
+            return render_template("Instagram_reel.html")
+        else:
+            return render_template('Instagram_login.html', login_info="Login Failed!!")
+    except:
+        return render_template('Instagram_login.html',login_info="Login Failed!!")
 
 
 @app.route("/download_insta_reel", methods=['GET', 'POST'])
 def download_insta_reel():
     try:
+        global res
         input_url = request.form['URL']
-        username = "rakshit__kulkarni"
-        password = "196219992002@rdks"
-        filename = instagram.Download_reel(input_url, username, password)
 
-        if filename[0] == "None":
+        filename = instagram.Download_reel(input_url,res[0],res[1])
+
+        if filename == "None":
             logging.exception('Failed download')
-            return filename[1]
-            # return 'Instagram Reel download failed!'
+            return "Instagram Reel download failed!"
 
-        return send_file(f"{filename[1]}.mp4", as_attachment=True)
+        return send_file(f"{filename}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
-        return filename[1]
+        return "Instagram Reel download failed!"
 
 
 if __name__ == '__main__':
-    # filesize=0
     app.run(debug=True)
