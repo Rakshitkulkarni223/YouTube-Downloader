@@ -122,7 +122,7 @@ def authorization():
         if res[1].get("authenticated"):
             return render_template("Instagram_reel.html")
         else:
-            return render_template('Instagram_login.html', login_info="Login Failed!!")
+            return render_template('Instagram_login.html')
     except:
         return render_template('Instagram_login.html')
 
