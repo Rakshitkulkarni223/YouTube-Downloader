@@ -34,8 +34,8 @@ def authontication(username, password):
 
         login_header = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
-                    	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
-                    	Safari/537.36 Edg/79.0.309.43",
+                        AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
+                        Safari/537.36 Edg/79.0.309.43",
             "X-Requested-With": "XMLHttpRequest",
             "Referer": "https://www.instagram.com/accounts/login/",
             "x-csrftoken": csrf
@@ -63,8 +63,8 @@ def Download_reel(url, login_response, json_data):
             # Header with session id
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
-            	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
-            	Safari/537.36 Edg/79.0.309.43",
+                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
+                Safari/537.36 Edg/79.0.309.43",
                 "cookie": f'sessionid={session_id};'
             }
 
@@ -97,8 +97,8 @@ def Download_Post(url, login_response, json_data):
             # Header with session id
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)\
-            	AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
-            	Safari/537.36 Edg/79.0.309.43",
+                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 \
+                Safari/537.36 Edg/79.0.309.43",
                 "cookie": f'sessionid={session_id};'
             }
 
