@@ -94,6 +94,7 @@ res=[]
 
 @app.route("/Download_reel")
 def Download_reel():
+    global res
     try:
         if res[1].get("authenticated"):
             return render_template("Instagram_reel.html")
@@ -118,6 +119,7 @@ def Download_reel_First():
 
 @app.route("/authorization")
 def authorization():
+    global res
     try:
         if res[1].get("authenticated"):
             return render_template("Instagram_reel.html")
@@ -129,11 +131,12 @@ def authorization():
 
 @app.route("/Download_post")
 def Download_post():
+    global res
     try:
         if res[1].get("authenticated"):
             return render_template("Instagram_post.html")
         else:
-            return render_template('Instagram_login.html', login_info="Login Failed!!")
+            return render_template('Instagram_login.html')
     except:
         return render_template('Instagram_login.html',login_info="Login Failed!!")
 
