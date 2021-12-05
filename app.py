@@ -131,7 +131,7 @@ def authorization():
 def Download_post():
     try:
         if res[1].get("authenticated"):
-            return render_template("Instagram_reel.html")
+            return render_template("Instagram_post.html")
         else:
             return render_template('Instagram_login.html', login_info="Login Failed!!")
     except:
@@ -154,6 +154,24 @@ def download_insta_reel():
     except:
         logging.exception('Failed download')
         return "Instagram Reel download failed!"
+
+
+@app.route("/download_insta_post", methods=['GET', 'POST'])
+def download_insta_post():
+    try:
+        global res
+        input_url = request.form['URL']
+
+        filename = instagram.Download_Post(input_url,res[0],res[1])
+
+        if filename == "None":
+            logging.exception('Failed download')
+            return "Instagram Post download failed!"
+
+        return send_file(f"{filename}.jpg", as_attachment=True)
+    except:
+        logging.exception('Failed download')
+        return "Instagram Post download failed!"
 
 
 if __name__ == '__main__':
