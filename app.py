@@ -103,8 +103,8 @@ def Download_reel():
     except:
         return render_template('Instagram_login.html',login_info="Login Failed!!")
 
-@app.route("/Download_reel_First",methods=['GET', 'POST'])
-def Download_reel_First():
+@app.route("/Instagram_Download",methods=['GET', 'POST'])
+def Instagram_Download():
     global res
     try:
         username = request.form['username']
