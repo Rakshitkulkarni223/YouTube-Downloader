@@ -136,7 +136,7 @@ def Download_post():
         if res[1].get("authenticated"):
             return render_template("Instagram_post.html")
         else:
-            return render_template('Instagram_login.html')
+            return render_template('Instagram_login.html',login_info="Login Failed!!")
     except:
         return render_template('Instagram_login.html',login_info="Login Failed!!")
 
