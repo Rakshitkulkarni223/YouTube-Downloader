@@ -156,7 +156,7 @@ def download_insta_reel():
         return send_file(f"{filename}.mp4", as_attachment=True)
     except:
         logging.exception('Failed download')
-        return "Instagram Reel/Video download failed!"
+        return "Instagram Reel download failed!"
 
 
 @app.route("/download_insta_post", methods=['GET', 'POST'])
