@@ -143,8 +143,8 @@ def Download_post():
 
 @app.route("/download_insta_reel", methods=['GET', 'POST'])
 def download_insta_reel():
+    global res
     try:
-        global res
         input_url = request.form['URL']
 
         filename = instagram.Download_reel(input_url,res[0],res[1])
