@@ -31,7 +31,7 @@
 <div class="horizontal_navigation">
 	<ul>
 		<li class="hr"><a href="{{ url_for('home') }}">Home</a></li>
-		<li class="hr"><a href="{{ url_for('authorization') }}">Instagram</a></li>
+		<li class="hr"><a href="{{ url_for('Download_reel') }}">Instagram</a></li>
 		<li class="hr"><a href="{{ url_for('Download_MP4') }}">MP4 Download</a></li>
 		<li class="hr"><a href="{{ url_for('Download_MP3') }}">MP3 Download</a></li>
 	</ul>
@@ -64,7 +64,7 @@
 
 	<div class="form" style="text-align: center;">
               <form action="/download_audio" method="post">
-                      <input type="text" name="URL" placeholder="Paste YouTube link here...">
+                      <input type="text" name="URL" placeholder="Paste link here...">
                       <br><br><br><br>
                       <button class="button" style="vertical-align:middle"><span>Download MP3</span></button><br><br><br>
               </form>
