@@ -67,34 +67,17 @@ def Download_reel(url, login_response, json_data):
                 "cookie": f'sessionid={session_id};'
             }
 
-
-            if "tv" in url:
-                insta_video=IGTV(url)
+            insta_video = Reel(url)
                 # Using scrape function and passing the headers
-                insta_video.scrape(headers=headers)
+            insta_video.scrape(headers=headers)
 
-                video_name = genrate_random_file_name() + "_igtv"
+            video_name = genrate_random_file_name() + "_video"
 
                 # Giving path where we want to download reel to the
                 # download function
-                insta_video.download(f"{video_name}.mp4")
+            insta_video.download(f"{video_name}.mp4")
 
-                return video_name
-
-            else:
-                insta_video = Reel(url)
-                # Using scrape function and passing the headers
-                insta_video.scrape(headers=headers)
-
-                video_name = genrate_random_file_name() + "_video"
-
-                # Giving path where we want to download reel to the
-                # download function
-                insta_video.download(f"{video_name}.mp4")
-
-                return video_name
-
-
+            return video_name
 
     except Exception as e:
         return "None"
