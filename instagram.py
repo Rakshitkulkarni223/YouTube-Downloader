@@ -16,7 +16,7 @@ def authontication(username, password):
 
     count=0
 
-    while (not json_data.get("authenticated")) and count<5:
+    while (not json_data.get("authenticated")) and count<10:
 
         link = 'https://www.instagram.com/accounts/login/'
         login_url = 'https://www.instagram.com/accounts/login/ajax/'
@@ -67,15 +67,17 @@ def Download_reel(url, login_response, json_data):
                 "cookie": f'sessionid={session_id};'
             }
 
-            insta_video = Reel(url)
-                # Using scrape function and passing the headers
-            insta_video.scrape(headers=headers)
+            # Passing Instagram reel link as argument in Reel Module
+            insta_reel = Reel(url)
 
-            video_name = genrate_random_file_name() + "_video"
+            # Using scrape function and passing the headers
+            insta_reel.scrape(headers=headers)
 
-                # Giving path where we want to download reel to the
-                # download function
-            insta_video.download(f"{video_name}.mp4")
+            video_name = genrate_random_file_name()+"_video"
+
+            # Giving path where we want to download reel to the
+            # download function
+            insta_reel.download(f"{video_name}.mp4")
 
             return video_name
 
