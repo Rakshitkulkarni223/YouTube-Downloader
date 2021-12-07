@@ -149,6 +149,7 @@ def Download_post():
 
 @app.route("/download_insta_reel", methods=['GET', 'POST'])
 def download_insta_reel():
+    global res
     try:
         input_url = request.form['URL']
 
@@ -166,6 +167,7 @@ def download_insta_reel():
 
 @app.route("/download_insta_post", methods=['GET', 'POST'])
 def download_insta_post():
+    global res
     try:
         input_url = request.form['URL']
 
