@@ -46,7 +46,6 @@ def authontication(username, password):
 
         count+=1
 
-        # print(count,json_data)
 
     return login_response, json_data
 

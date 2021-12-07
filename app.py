@@ -29,8 +29,8 @@ def Download_MP3():
 
 @app.route('/download_video', methods=['GET', 'POST'])
 def download_video():
+    global resolutions
     try:
-        global filesize
         input_url = request.form['URL']
 
         resolu = set()
@@ -47,13 +47,11 @@ def download_video():
         for resolution in resolu:
             if res == resolution:
                 flag = True
-                video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolution,
-                                                               file_extension='mp4').first()
+                video = YouTube(str(input_url)).streams.filter(progressive=True,resolution=res).first()
                 break
 
         if not flag:
-            video = YouTube(str(input_url)).streams.filter(progressive=True, resolution=resolu[len(resolu) - 1],
-                                                           file_extension='mp4').first()
+            video = YouTube(str(input_url)).streams.filter(progressive=True,resolution=resolu[len(resolu) - 1]).first()
 
         name = video.title
 
