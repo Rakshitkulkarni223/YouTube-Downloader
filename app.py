@@ -93,8 +93,8 @@ res=[]
 def Download_reel():
     global res
     try:
-        username = "rakshit__kulkarni"
-        password = "196219992002@rdks"
+        username = "rk_utube_insta_download"
+        password = "rakshitkulkarni2021"
         res = instagram.authontication(username, password)
         if res[1].get("authenticated"):
             return render_template("Instagram_reel.html")
