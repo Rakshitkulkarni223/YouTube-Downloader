@@ -16,7 +16,7 @@ def authontication(username, password):
 
     count=0
 
-    while (not json_data.get("authenticated")) and count<10:
+    while (not json_data.get("authenticated")) and count<5:
 
         link = 'https://www.instagram.com/accounts/login/'
         login_url = 'https://www.instagram.com/accounts/login/ajax/'
@@ -67,19 +67,39 @@ def Download_reel(url, login_response, json_data):
                 "cookie": f'sessionid={session_id};'
             }
 
-            # Passing Instagram reel link as argument in Reel Module
-            insta_reel = Reel(url)
 
-            # Using scrape function and passing the headers
-            insta_reel.scrape(headers=headers)
+            if "tv" in url:
 
-            video_name = genrate_random_file_name()+"_video"
+                print("IGTV")
 
-            # Giving path where we want to download reel to the
-            # download function
-            insta_reel.download(f"{video_name}.mp4")
+                insta_video=IGTV(url)
+                # Using scrape function and passing the headers
+                insta_video.scrape(headers=headers)
 
-            return video_name
+                video_name = genrate_random_file_name() + "_igtv"
+
+                # Giving path where we want to download reel to the
+                # download function
+                insta_video.download(f"{video_name}.mp4")
+
+                return video_name
+
+            else:
+
+                print("Reel")
+                insta_video = Reel(url)
+                # Using scrape function and passing the headers
+                insta_video.scrape(headers=headers)
+
+                video_name = genrate_random_file_name() + "_video"
+
+                # Giving path where we want to download reel to the
+                # download function
+                insta_video.download(f"{video_name}.mp4")
+
+                return video_name
+
+
 
     except Exception as e:
         return "None"

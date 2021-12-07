@@ -2,7 +2,6 @@ from flask import Flask, request, render_template, send_file
 from pytube import YouTube
 import logging, sys
 import instagram
-
 logging.basicConfig(stream=sys.stderr, level=logging.DEBUG)
 app = Flask(__name__)
 
@@ -94,37 +93,40 @@ res=[]
 def Download_reel():
     global res
     try:
+        username = "rakshit__kulkarni"
+        password = "196219992002@rdks"
+        res = instagram.authontication(username, password)
         if res[1].get("authenticated"):
             return render_template("Instagram_reel.html")
         else:
-            return render_template('Instagram_login.html', login_info="Login Failed!!")
+            return render_template('Home.html')
     except:
-        return render_template('Instagram_login.html',login_info="Login Failed!!")
+        return render_template('Home.html')
 
-@app.route("/Instagram_Download",methods=['GET', 'POST'])
-def Instagram_Download():
-    global res
-    try:
-        username = request.form['username']
-        password = request.form['password']
-        res=instagram.authontication(username,password)
-        if res[1].get("authenticated"):
-            return render_template("Instagram_reel.html")
-        else:
-            return render_template('Instagram_login.html', login_info="Login Failed!!")
-    except:
-        return render_template('Instagram_login.html',login_info="Login Failed!!")
+# @app.route("/Instagram_Download",methods=['GET', 'POST'])
+# def Instagram_Download():
+#     global res
+#     try:
+#         username = request.form['username']
+#         password = request.form['password']
+#         res=instagram.authontication(username,password)
+#         if res[1].get("authenticated"):
+#             return render_template("Instagram_reel.html")
+#         else:
+#             return render_template('Instagram_login.html', login_info="Login Failed!!")
+#     except:
+#         return render_template('Instagram_login.html',login_info="Login Failed!!")
 
-@app.route("/authorization")
-def authorization():
-    global res
-    try:
-        if res[1].get("authenticated"):
-            return render_template("Instagram_reel.html")
-        else:
-            return render_template('Instagram_login.html')
-    except:
-        return render_template('Instagram_login.html')
+# @app.route("/authorization")
+# def authorization():
+#     global res
+#     try:
+#         if res[1].get("authenticated"):
+#             return render_template("Instagram_reel.html")
+#         else:
+#             return render_template('Instagram_login.html')
+#     except:
+#         return render_template('Instagram_login.html')
 
 
 @app.route("/Download_post")
@@ -134,15 +136,20 @@ def Download_post():
         if res[1].get("authenticated"):
             return render_template("Instagram_post.html")
         else:
-            return render_template('Instagram_login.html',login_info="Login Failed!!")
+            username = "rk_utube_insta_download"
+            password = "rakshitkulkarni2021"
+            res = instagram.authontication(username, password)
+            if res[1].get("authenticated"):
+                return render_template("Instagram_post.html")
+            else:
+                return render_template('Home.html')
     except:
-        return render_template('Instagram_login.html',login_info="Login Failed!!")
+        return render_template('Home.html')
 
 
 @app.route("/download_insta_reel", methods=['GET', 'POST'])
 def download_insta_reel():
     try:
-        global res
         input_url = request.form['URL']
 
         filename = instagram.Download_reel(input_url,res[0],res[1])
@@ -160,7 +167,6 @@ def download_insta_reel():
 @app.route("/download_insta_post", methods=['GET', 'POST'])
 def download_insta_post():
     try:
-        global res
         input_url = request.form['URL']
 
         filename = instagram.Download_Post(input_url,res[0],res[1])
