@@ -69,9 +69,6 @@ def Download_reel(url, login_response, json_data):
 
 
             if "tv" in url:
-
-                print("IGTV")
-
                 insta_video=IGTV(url)
                 # Using scrape function and passing the headers
                 insta_video.scrape(headers=headers)
@@ -85,8 +82,6 @@ def Download_reel(url, login_response, json_data):
                 return video_name
 
             else:
-
-                print("Reel")
                 insta_video = Reel(url)
                 # Using scrape function and passing the headers
                 insta_video.scrape(headers=headers)
