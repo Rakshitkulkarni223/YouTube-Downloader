@@ -59,10 +59,9 @@ def download_video():
 
         name=name.rstrip()
 
+        # video.download(filename=name + '.mp4')
 
-        video.download(filename=name + '.mp4')
-
-        return send_file(f"{name}.mp4", as_attachment=True)
+        return send_file(video.download(filename=name + '.mp4'),as_attachment=True)
     except:
         logging.exception('Failed download')
         return 'Video download failed!'
@@ -75,10 +74,11 @@ def download_audio():
 
         audio_file = YouTube(input_url)
 
-        name = audio_file.streams.get_audio_only().title
+        title = audio_file.streams.get_audio_only().title
 
-        if '|' in name:
-            name = name.split('|')[0]
+        name = ''.join(char if char.isalnum() else ' ' for char in title)
+
+        name = name.rstrip()
 
         audio_file.streams.get_audio_only().download(filename=name + '.mp3')
 
