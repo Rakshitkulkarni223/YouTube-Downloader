@@ -53,12 +53,12 @@ def download_video():
         if not flag:
             video = YouTube(str(input_url)).streams.filter(progressive=True,resolution=resolu[len(resolu) - 1]).first()
 
-        name = video.title
+        title = video.title
 
-        if '|' in name:
-            name = name.split('|')[0]
+        name = ''.join(char if char.isalnum() else ' ' for char in title)
 
         name=name.rstrip()
+
 
         video.download(filename=name + '.mp4')
 
