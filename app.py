@@ -58,6 +58,8 @@ def download_video():
         if '|' in name:
             name = name.split('|')[0]
 
+        name=name.rstrip()
+
         video.download(filename=name + '.mp4')
 
         return send_file(f"{name}.mp4", as_attachment=True)
